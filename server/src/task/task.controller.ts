@@ -1,8 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
+  Patch,
   Post,
   Put,
   Req,
@@ -38,7 +40,7 @@ export class TaskController {
   // async getTask(@Param('id') id: string): Promise<Task> {
   //   return this.taskService.findById(id);
   // }
-  @Put(':id')
+  @Patch(':id')
   async updateTask(
     @Param('id')
     id: string,
@@ -47,5 +49,11 @@ export class TaskController {
     task: UpdateTaskDto,
   ): Promise<Task> {
     return this.taskService.updateById(id, task);
+  }
+
+  @Delete(':id')
+  @UseGuards(AuthGuard())
+  async deleteTask(@Param('id') id: string): Promise<void> {
+    return this.taskService.deleteById(id);
   }
 }

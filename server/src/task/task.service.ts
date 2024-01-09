@@ -46,6 +46,17 @@ export class TaskService {
     });
   }
     
+  async deleteById(id: string): Promise<void> {
+    const isValidId = mongoose.isValidObjectId(id);
+    if (!isValidId) {
+      throw new BadRequestException('Please enter correct Id');
+    }
+
+    const deletedTask = await this.taskModel.findByIdAndDelete(id);
+    if (!deletedTask) {
+      throw new NotFoundException('Task not found');
+    }
+  }
  
     
 }
