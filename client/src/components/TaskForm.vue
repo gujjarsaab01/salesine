@@ -1,0 +1,64 @@
+<!-- TaskForm.vue -->
+<template>
+  <div>
+    <h2>Add Task</h2>
+    <form @submit.prevent="createTask" class="col-md-6 mx-auto">
+      <div class="mb-3">
+        <label for="title" class="form-label">Task Title</label>
+        <input v-model="title" type="text" class="form-control" id="title" required />
+        <label for="description" class="form-label">Task Description</label>
+        <input v-model="description" type="text" class="form-control" id="description" required />
+      </div>
+      <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'TaskFormView',
+  data() {
+    return {
+      title: '',
+      description: '',
+    };
+  },
+  methods: {
+    async createTask() {
+      try {
+        const isAuthenticated = this.$store.getters.isAuthenticated;
+        if (!isAuthenticated) {
+          console.error("User not authenticated");
+          return;
+        }
+
+        // Include the authentication token in the request headers
+        const token = this.$store.getters.getUser.token;
+        const headers = { Authorization: `Bearer ${token}` };
+        // Call your backend API to add a new task
+        const response = await axios.post('/tasks', { title: this.title, description: this.description }, {headers});
+        console.log('Task added successfully', response.data);
+
+        // Emit event to notify parent (TaskManager) about the added task
+        this.$emit('taskAdded', response.data);
+
+        // Clear form fields
+        this.title = '';
+        this.description = '';
+      } catch (error) {
+        console.error('Error adding task:', error.response.data);
+        // Handle error adding task (show error message, etc.)
+      }
+    },
+  },
+};
+</script>
+
+<style scoped>
+h2 {
+  margin-top: 2em;
+  text-align: center;
+}
+</style>
