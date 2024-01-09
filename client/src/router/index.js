@@ -3,7 +3,9 @@ import Home from "@/components/Home.vue";
 import Login from "@/components/Login.vue";
 import SignUp from "@/components/SignUp.vue";
 import TaskManager from "@/components/TaskManager.vue";
-import store from "@/store/auth";
+import TaskUpdate from "@/components/TaskUpdate.vue";
+import store from "@/store/auth"
+
 
 const routes = [
   {
@@ -26,6 +28,12 @@ const routes = [
     name: "TaskManager",
     component: TaskManager,
     meta: { requiresAuth: true }, // This route requires authentication
+  },
+  {
+    path: '/tasks/update/:id',
+    name: 'TaskUpdate',
+    component: TaskUpdate,
+    meta: { requiresAuth: true },  // This route requires authentication
   },
 ];
 

@@ -29,10 +29,16 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'App',
   computed: {
-    ...mapGetters('auth', ['isAuthenticated']),
+    ...mapGetters( ['isAuthenticated']),
+  },
+  created() {
+    this.$store.dispatch('initAuth')
   },
   methods: {
-    ...mapActions('auth', ['logout']),
+    async logout() {
+      await this.$store.dispatch('logout');
+    },
+    ...mapActions( ['logout']),
   }
  
 }

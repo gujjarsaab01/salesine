@@ -37,7 +37,7 @@ export default {
         // Include the authentication token in the request headers
         const token = this.$store.getters.getUser.token;
         const headers = { Authorization: `Bearer ${token}` };
-        // Call your backend API to add a new task
+        // Call  backend API to add a new task
         const response = await axios.post('/tasks', { title: this.title, description: this.description }, {headers});
         console.log('Task added successfully', response.data);
 
