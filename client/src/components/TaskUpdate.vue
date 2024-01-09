@@ -3,14 +3,14 @@
         <h2>Update Task</h2>
         <form class="col-md-6 mx-auto">
             <div class="mb-3">
-                <label  for="title" class="form-label">Updated Title</label>
+                <label  for="title" class="form-label">Update Title</label>
                 <input v-model="title" type="text" id="title" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">Updated Description</label>
+                <label for="description" class="form-label">Update Description</label>
                 <input v-model="description" type="text" id="description" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary">Update Task</button>
+            <button type="submit" class="btn btn-primary w-100">Update Task</button>
         </form>
     </div>
 </template>

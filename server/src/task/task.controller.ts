@@ -19,12 +19,14 @@ import { AuthGuard } from '@nestjs/passport';
 @Controller('tasks')
 export class TaskController {
   constructor(private taskService: TaskService) {}
-  
+
   @Get()
-  async getAllTasks(): Promise<Task[]> {
-    return this.taskService.findAll();
+  @UseGuards(AuthGuard())
+  async getAllTasks(@Req() req): Promise<Task[]> {
+    const user = req.user;
+    return this.taskService.findAll(user);
   }
-  
+
   @Post()
   @UseGuards(AuthGuard())
   async createTask(

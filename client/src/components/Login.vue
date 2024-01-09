@@ -22,7 +22,7 @@
           required
         />
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
   </div>
 </template>

@@ -18,4 +18,5 @@ axios.defaults.baseURL = "http://localhost:3000"; // Replace with your Nest.js b
 app.use(router);
 app.use(store);
 
+
 app.mount("#app");

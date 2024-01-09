@@ -9,7 +9,7 @@
         <label for="description" class="form-label">Task Description</label>
         <input v-model="description" type="text" class="form-control" id="description" required />
       </div>
-      <button type="submit" class="btn btn-primary">Add Task</button>
+      <button type="submit" class="btn btn-primary w-100">Add Task</button>
     </form>
   </div>
 </template>

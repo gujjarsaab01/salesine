@@ -11,8 +11,8 @@ export class TaskService {
     private taskModel: mongoose.Model<Task>,
   ) {}
 
-  async findAll(): Promise<Task[]> {
-    const tasks = await this.taskModel.find();
+  async findAll(user: User): Promise<Task[]> {
+    const tasks = await this.taskModel.find({user: user._id});
     return tasks;
   }
 
