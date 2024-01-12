@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light  bg-info-subtle ">
+    <nav class="navbar navbar-expand-lg navbar-light  bg-info-subtle sticky-top ">
       <div class="container">
-        <router-link to="/" class="navbar-brand">Task Tracker</router-link>
+        <router-link to="/" class="navbar-brand"><strong>Task Tracker</strong></router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -17,13 +17,13 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ms-auto">
             <li v-if="!isAuthenticated" class="nav-item">
-              <router-link to="/login" class="nav-link">Login</router-link>
+              <router-link to="/login" class="nav-link text-uppercase">Login</router-link>
             </li>
             <li v-if="!isAuthenticated" class="nav-item">
-              <router-link to="/signup" class="nav-link">Signup</router-link>
+              <router-link to="/signup" class="nav-link text-uppercase">Signup</router-link>
             </li>
-            <li v-if="isAuthenticated" class="nav-item">
-              <button @click="logout" class="nav-link">Logout</button>
+            <li v-if="isAuthenticated " class="nav-item">
+              <button @click="logout" class="nav-link text-uppercase">Logout</button>
             </li>
           </ul>
         </div> 

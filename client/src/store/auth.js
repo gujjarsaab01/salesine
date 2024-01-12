@@ -17,6 +17,7 @@ export default createStore({
       state.user = null;
       state.isAuthenticated = false;
       localStorage.removeItem(TOKEN_KEY); 
+      window.location.reload();
     },
   },
   actions: {

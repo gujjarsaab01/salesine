@@ -22,7 +22,7 @@
   <script>
   import { mapActions } from 'vuex';
 import axios from 'axios';
-
+import Swal from 'sweetalert2';
   
   export default {
     name: "SignUpView",
@@ -46,10 +46,24 @@ import axios from 'axios';
         });
             // console.log('Signup successful', response.data);
             this.login(response.data);
+            Swal.fire({
+          title: "User Registered Successfully !",
+          timerProgressBar: top,
+          icon: "success",
+          timer: 3000,
+          
+        });
         // Redirect to the login page 
         this.$router.push('/login');
         
-      } catch (error) {
+          } catch (error) {
+            Swal.fire({
+          title: "SignUp Failed",
+                timerProgressBar: toolbar,
+          icon: "error",
+          timer: 3000,
+          
+        });
         console.error('Signup failed', error.response.data);
         // Handle signup error (show error message, etc.)
       }

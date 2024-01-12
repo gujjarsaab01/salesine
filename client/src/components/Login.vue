@@ -30,7 +30,7 @@
 <script>
 import { mapActions } from "vuex";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 
 export default {
   name: "LoginView",
@@ -49,13 +49,24 @@ export default {
           email: this.email,
           password: this.password,
         });
-        localStorage.setItem('token', response.data.token)
+        localStorage.setItem("token", response.data.token);
         // console.log("Login successful", response.data);
-        this.login(response.data)
-        // Redirect to the task list 
-
+        this.login(response.data);
+        // Redirect to the task list
+        Swal.fire({
+          title: " LoggedIn Successfully!",
+          timerProgressBar: top,
+          icon: "success",
+          timer: 3000,
+        });
         this.$router.push("/tasks");
       } catch (error) {
+        Swal.fire({
+          title: error.response.data,
+          timerProgressBar: top,
+          icon: "error",
+          timer: 3000,
+        });
         console.error("Login failed", error.response.data);
         // Handle login error (show error message, etc.)
       }
