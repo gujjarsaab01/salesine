@@ -40,11 +40,26 @@ export default {
   methods: {
     async updateTask() {
       try {
+        const isAuthenticated = this.$store.getters.isAuthenticated;
+        if (!isAuthenticated) {
+          Swal.fire({
+            title: "UnAuthorized!",
+            text: "User Not Authenticated.",
+            icon: "success",
+            timer: 3000,
+            timerProgressBar: true,
+          });
+
+          return;
+        }
+        const token = this.$store.getters.getUser.token;
+        const headers = { Authorization: `Bearer ${token}` };
+
         const taskId = this.$route.params.id;
         const response = await axios.patch(`/tasks/${taskId}`, {
           title: this.title,
           description: this.description,
-        });
+        }, {headers});
         Swal.fire({
           title: "Task Updated Successfully !",
           timerProgressBar: toolbar,

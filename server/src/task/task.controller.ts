@@ -15,6 +15,7 @@ import { Task } from './schema/task.schema';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { CompleteTaskDto } from './dto/complete-task.dto';
 
 @Controller('tasks')
 export class TaskController {
@@ -43,6 +44,7 @@ export class TaskController {
   //   return this.taskService.findById(id);
   // }
   @Patch(':id')
+  @UseGuards(AuthGuard())
   async updateTask(
     @Param('id')
     id: string,
@@ -51,6 +53,16 @@ export class TaskController {
     task: UpdateTaskDto,
   ): Promise<Task> {
     return this.taskService.updateById(id, task);
+  }
+
+  @Patch('complete/:id')
+  @UseGuards(AuthGuard())
+  async completedTask(
+    @Param('id') id: string,
+    @Body() completeTaskDto: CompleteTaskDto,
+    
+  ): Promise<Task> {
+    return this.taskService.completeTask(id, completeTaskDto.completed);
   }
 
   @Delete(':id')

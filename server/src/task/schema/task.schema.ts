@@ -13,6 +13,9 @@ export class Task{
     @Prop()
     description: string;
 
+    @Prop({ type: Boolean, default: false })
+    completed: boolean;
+
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref:'User' })
     user: User;
 
