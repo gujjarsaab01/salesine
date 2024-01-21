@@ -8,7 +8,7 @@ export class User extends Document{
     @Prop()
     name: string
 
-    @Prop({unique: [true, "Duplicate email Entered"]})
+    @Prop({unique: [true, "Email Already Existed"]})
     email: string
 
     @Prop()

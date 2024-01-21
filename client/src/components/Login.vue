@@ -44,7 +44,7 @@ export default {
     ...mapActions(["login"]),
     async signin() {
       try {
-        // Call your backend API to handle login
+        // Call  backend API to handle login
         const response = await axios.post("/auth/signin", {
           email: this.email,
           password: this.password,
@@ -55,19 +55,19 @@ export default {
         // Redirect to the task list
         Swal.fire({
           title: " LoggedIn Successfully!",
-          timerProgressBar: top,
+          timerProgressBar: true,
           icon: "success",
           timer: 3000,
         });
         this.$router.push("/tasks");
       } catch (error) {
         Swal.fire({
-          title: error.response.data,
-          timerProgressBar: top,
+          title: error.response.data.message,
+          timerProgressBar: true,
           icon: "error",
           timer: 3000,
         });
-        console.error("Login failed", error.response.data);
+        console.error("Login failed", error.response.data.message);
         // Handle login error (show error message, etc.)
       }
     },

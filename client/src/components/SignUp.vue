@@ -47,7 +47,7 @@ import Swal from 'sweetalert2';
             // console.log('Signup successful', response.data);
             this.login(response.data);
             Swal.fire({
-          title: "User Registered Successfully !",
+          title: response.data.message || "User Registered Successfully !",
           timerProgressBar: top,
           icon: "success",
           timer: 3000,
@@ -58,7 +58,7 @@ import Swal from 'sweetalert2';
         
           } catch (error) {
             Swal.fire({
-          title: "SignUp Failed",
+          title: error.response.data.message || "SignUp Failed",
                 timerProgressBar: toolbar,
           icon: "error",
           timer: 3000,

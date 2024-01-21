@@ -17,6 +17,12 @@ export class AuthService {
     
     async signUp(signUpDto: SignUpDto): Promise<{token: string}> {
         const { name, email, password } = signUpDto
+
+        const existedUser = await this.userModel.findOne({email})
+
+        if (existedUser  ) {
+            throw new UnauthorizedException("Email Already Existed !")
+        }
         
         const hashedPassword = await bcrypt.hash(password, 10)
 
@@ -36,7 +42,7 @@ export class AuthService {
         const user = await this.userModel.findOne({ email });
 
         if (!user) {
-            throw new UnauthorizedException(" Invalid email or Passowrd")
+            throw new UnauthorizedException(" User Not Found! \n Please SignUp First !")
         }
 
         const comparePassword = await bcrypt.compare(password, user.password);
